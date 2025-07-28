@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - CushnCrate</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <h2>Admin Login</h2>
+  <input type="password" id="pass" placeholder="Enter password" />
+  <button onclick="login()">Login</button>
+  <div id="editor" style="display:none;">
+    <h3>Edit products.json and paste it below:</h3>
+    <textarea id="json" style="width:90%; height:300px;"></textarea><br/>
+    <button onclick="download()">Download</button>
+  </div>
+
+  <script>
+    function login() {
+      const p = document.getElementById('pass').value;
+      if (p === 'roshisharma@1') {
+        document.getElementById('editor').style.display = 'block';
+      } else {
+        alert('Wrong password!');
+      }
+    }
+
+    function download() {
+      const content = document.getElementById('json').value;
+      const blob = new Blob([content], {type: "application/json"});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "products.json";
+      a.click();
+    }
+  </script>
+</body>
+</html>
